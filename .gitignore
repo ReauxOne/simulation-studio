@@ -1,0 +1,6 @@
+.DS_Store
+# Local editor/assistant settings (contain machine-specific paths)
+.claude/
+node_modules/
+*.webm
+*.mp4

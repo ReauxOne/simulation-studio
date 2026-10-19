@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fold Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><span class="logo" aria-hidden="true"></span>Fold Lab <small>Simulation Studio</small></div>
+    <div class="streak" id="streak"></div>
+  </header>
+
+  <main>
+    <section class="today">
+      <div class="eyebrow" id="dateLine"></div>
+      <h1 id="name"></h1>
+      <p class="riddle" id="riddle"></p>
+      <div class="meta"><span id="difficulty"></span><span id="foldCount"></span></div>
+      <div class="chips" id="chips" aria-label="Other folds"></div>
+    </section>
+
+    <div class="tabs" role="tablist">
+      <button role="tab" data-mode="puzzle" aria-selected="true">Puzzle</button>
+      <button role="tab" data-mode="guided" aria-selected="false">Step by step</button>
+    </div>
+
+    <section class="stage">
+      <div class="panel" id="puzzlePane">
+        <h2>Fold it from the lines</h2>
+        <div class="cpWrap"><canvas id="cp"></canvas></div>
+        <div class="legend">
+          <span><i class="v"></i>Valley: fold toward you</span>
+          <span><i class="m"></i>Mountain: fold away</span>
+        </div>
+        <p class="tip">Every line on the sheet gets folded. Work out the order and match the model on the right.</p>
+        <ol class="hints" id="hints"></ol>
+        <div class="row">
+          <button id="hintBtn">Hint</button>
+          <button id="showMe" class="ghost">Show me how</button>
+        </div>
+      </div>
+
+      <div class="panel" id="guidedPane" hidden>
+        <h2>Step by step</h2>
+        <ol class="steps" id="steps"></ol>
+      </div>
+
+      <div class="panel viewPanel">
+        <div class="view" id="viewBox">
+          <canvas id="view3d" aria-label="3D view of the model"></canvas>
+          <div class="viewLabel" id="viewLabel"></div>
+        </div>
+        <div class="controls" id="playControls" hidden>
+          <button id="prev" aria-label="Previous step">◀</button>
+          <button id="play" class="primary" aria-label="Play">▶ Play</button>
+          <button id="next" aria-label="Next step">▶</button>
+          <input type="range" id="scrub" min="0" max="100" step="0.01" value="0" aria-label="Fold progress">
+        </div>
+      </div>
+    </section>
+
+    <section class="actions">
+      <button id="done" class="primary">I folded it!</button>
+      <button id="videoBtn">Make a short video</button>
+    </section>
+    <p class="fact" id="fact"></p>
+  </main>
+
+  <dialog id="videoDlg">
+    <div class="vbody">
+      <div class="vwrap"><canvas id="videoCanvas" width="720" height="1280"></canvas></div>
+      <div class="vside">
+        <h2>Short video</h2>
+        <p id="vInfo"></p>
+        <div class="row">
+          <button id="vPlay">Preview</button>
+          <button id="vRec" class="primary">Record</button>
+        </div>
+        <a id="vDl" class="dl" hidden>Download video</a>
+        <p class="vstatus" id="vStatus"></p>
+        <button id="vClose" class="ghost">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
