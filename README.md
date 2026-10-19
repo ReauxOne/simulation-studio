@@ -2,6 +2,8 @@
 
 A home for small, playful simulations. First up: **Fold Lab**, an origami fold-a-day app.
 
+**Try it live:** https://reauxone.github.io/simulation-studio/
+
 The idea, research, decisions and roadmap are in [PROJECT_NOTES.md](PROJECT_NOTES.md).
 
 ## Fold Lab (`origami/`)
